@@ -222,18 +222,11 @@ ssh-keygen
 
 <img width="622" height="417" alt="Captura de pantalla de 2025-12-25 21-19-04" src="https://github.com/user-attachments/assets/8d521d89-4912-4862-bdd9-f53dc097e189" />
 
-Una vez obtenida la clave pública <strong>id_rsa.pub</strong>, y dado que ya se tienen privilegios de administrador en la máquina víctima, se añade dicha clave al archivo de claves autorizadas del usuario root.
-
-En la máquina víctima, se ejecutan los siguientes comandos:
-
-```bash
-mkdir -p /root/.ssh
-nano /root/.ssh/authorized_keys
-```
+Una vez obtenida la clave pública <strong>id_rsa.pub</strong>,  se añade dicha clave al archivo de claves autorizadas del usuario wp_admin.
 
 Dentro del archivo authorized_keys, se introduce la clave pública SSH del atacante.
 
-<img width="1188" height="312" alt="Captura de pantalla de 2025-12-25 21-28-10" src="https://github.com/user-attachments/assets/de72f01b-c992-4e27-94d1-6e8a1e26f974" />
+<img width="1553" height="187" alt="Captura de pantalla de 2025-12-25 22-06-06" src="https://github.com/user-attachments/assets/5cc35100-d5d9-4b40-b474-efb80a7d2a83" />
 
 Posteriormente, se ajustan los permisos correctos para evitar problemas de acceso:
 
@@ -242,5 +235,14 @@ chmod 700 /root/.ssh
 chmod 600 /root/.ssh/authorized_keys
 ```
 
+### Verificación de la persistencia
+
+Una vez configurada la clave pública, el atacante puede acceder directamente al sistema como root mediante SSH, sin necesidad de introducir contraseña:
+
+```bash
+ssh peter_wp@192.168.1.10 -p 2220
+```
+
+El acceso exitoso confirma que se ha establecido un mecanismo de persistencia permanente, independiente de las credenciales del usuario original.
 
 
