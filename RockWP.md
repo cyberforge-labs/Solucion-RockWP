@@ -127,3 +127,20 @@ wp-submit=Log In: parámetro enviado al pulsar el botón de inicio de sesión.
 redirect_to=...: redirección utilizada por WordPress tras el login.
 
 S=302: indica a Hydra que una respuesta HTTP 302 (redirección) se considera un inicio de sesión exitoso.
+
+Este criterio es correcto, ya que WordPress, tras una autenticación válida, responde con un código HTTP 302, redirigiendo al usuario al panel de administración.
+
+Resultados del ataque
+
+Tras ejecutar el ataque, Hydra logra identificar la contraseña válida asociada al usuario <strong>peter_wp</strong>, confirmando que el sistema es vulnerable a ataques de fuerza bruta contra el formulario de autenticación.
+
+<img width="1474" height="259" alt="Captura de pantalla de 2025-12-25 18-33-17" src="https://github.com/user-attachments/assets/1fd8cebc-187f-4631-a9f3-bb0490f3f7f4" />
+
+El éxito del ataque evidencia:
+
+La ausencia de limitación de intentos de login.
+
+La inexistencia de mecanismos de protección como CAPTCHA o bloqueo por IP.
+
+El uso de una contraseña débil basada en un diccionario común, incluso aunque esté invertida.
+
