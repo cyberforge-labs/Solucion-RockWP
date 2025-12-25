@@ -136,6 +136,7 @@ Tras ejecutar el ataque, Hydra logra identificar la contraseña válida asociada
 
 <img width="1474" height="259" alt="Captura de pantalla de 2025-12-25 18-33-17" src="https://github.com/user-attachments/assets/1fd8cebc-187f-4631-a9f3-bb0490f3f7f4" />
 
+---------------------------------------------------------------------------------------------------
 El éxito del ataque evidencia:
 
 La ausencia de limitación de intentos de login.
