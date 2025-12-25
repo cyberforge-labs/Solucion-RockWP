@@ -55,8 +55,11 @@ wpscan --url http://192.168.1.10 --enumerate u,vt,vp
 Donde:
 
 --url: especifica la URL del sitio WordPress objetivo.
+
 --enumerate u: enumera los usuarios registrados.
+
 --enumerate vt: enumera los temas vulnerables.
+
 --enumerate vp: enumera los plugins vulnerables.
 
 Como resultado del escaneo, se obtiene información relevante sobre la instalación de WordPress, obtenemos informacion como que existe un usuario valido en el sistema llamado peter_wp, La enumeración de usuarios es especialmente crítica, ya que facilita ataques de fuerza bruta o credential stuffing contra el panel de administración.
@@ -77,4 +80,23 @@ De forma complementaria, se realiza una comprobación manual accediendo a rutas 
 
 El acceso a estas rutas confirma nuevamente el uso de WordPress y permite verificar si existen restricciones de acceso o mecanismos de protección adicionales, como autenticación reforzada o limitación de intentos de inicio de sesión.
 
+## Paso 3: Ataque de fuerza bruta contra WordPress
 
+Tras la fase de enumeración, se ha identificado la existencia de un usuario válido en WordPress llamado peter_wp. A partir de esta información, se procede a realizar un ataque de fuerza bruta contra el panel de autenticación de WordPress con el objetivo de obtener credenciales válidas.
+
+Preparación del diccionario
+
+Para el ataque se utiliza el diccionario rockyou.txt, ampliamente empleado en auditorías de seguridad. No obstante, en este laboratorio el diccionario se emplea invertido, con el fin de simular un escenario en el que el usuario ha utilizado una contraseña basada en una palabra común pero escrita al revés, una práctica insegura relativamente frecuente.
+
+El diccionario invertido se genera mediante el siguiente comando:
+tac /usr/share/wordlist/rockyou.txt > /tmp/rockyou_invertido.txt
+
+De este modo, se obtiene un nuevo diccionario que contiene las mismas palabras que rockyou.txt, pero en orden inverso.
+
+# Ejecución del ataque de fuerza bruta.
+
+Una vez identificado el usuario válido <strong>peter_wp</strong> y preparado el diccionario rockyou invertido, se procede a ejecutar el ataque de fuerza bruta contra el formulario de autenticación de WordPress utilizando la herramienta Hydra, ampliamente empleada para ataques de autenticación en servicios web.
+
+En WordPress, el inicio de sesión se realiza a través del archivo wp-login.php, por lo que el ataque se dirige contra dicho formulario.
+
+El comando utilizado es el siguiente:
