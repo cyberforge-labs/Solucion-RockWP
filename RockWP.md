@@ -8,6 +8,8 @@
 | Fecha del writeup | 25/12/2025                                      |
 | Maquina original  | RockWP                                         |
 
+El laboratorio presenta una dificultad media, ya que requiere conocimientos sólidos de enumeración, ataques de fuerza bruta, servicios web y sistemas Linux. Sin embargo, no incluye explotación avanzada ni técnicas de alta complejidad, basándose principalmente en malas configuraciones y malas prácticas de seguridad encadenadas.
+
 
 ### Paso 1: Reconocimiento - Escaneo de Puertos
 
