@@ -161,6 +161,9 @@ ssh peter_wp@192.168.1.10 -p 2220
 
 Al introducir la contraseña obtenida durante el ataque de fuerza bruta contra WordPress, el sistema permite el acceso correctamente, proporcionando una shell interactiva en el sistema operativo de la máquina objetivo.
 
+<img width="702" height="547" alt="Captura de pantalla de 2025-12-25 18-47-18" src="https://github.com/user-attachments/assets/7d16554d-8452-4c6f-8d8f-95258e408b17" />
+
+
 Resultados del acceso
 
 El acceso exitoso al servicio SSH confirma que:
