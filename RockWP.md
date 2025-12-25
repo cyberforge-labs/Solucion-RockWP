@@ -233,6 +233,8 @@ nano /root/.ssh/authorized_keys
 
 Dentro del archivo authorized_keys, se introduce la clave pública SSH del atacante.
 
+<img width="1188" height="312" alt="Captura de pantalla de 2025-12-25 21-28-10" src="https://github.com/user-attachments/assets/de72f01b-c992-4e27-94d1-6e8a1e26f974" />
+
 Posteriormente, se ajustan los permisos correctos para evitar problemas de acceso:
 
 ```bash
