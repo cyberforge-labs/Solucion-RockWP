@@ -184,3 +184,61 @@ Ejecutar comandos con los privilegios del usuario comprometido.
 
 Facilitar ataques posteriores, como la escalada de privilegios hasta obtener control total del sistema.
 
+### Paso 5: Escalada de privilegios mediante configuración insegura de sudo
+
+Una vez obtenido acceso al sistema a través del servicio SSH con el usuario peter_wp, se procede a comprobar si el usuario dispone de privilegios elevados o permisos mal configurados que permitan una escalada de privilegios.
+
+Como primera comprobación, se ejecuta el siguiente comando:
+
+```bash
+sudo -i
+```
+
+De forma inmediata, el sistema concede acceso a una shell con privilegios de superusuario (root) sin solicitar ninguna confirmación adicional ni contraseña distinta a la del usuario.
+
+Resultados de la escalada de privilegios
+
+La ejecución exitosa de sudo -i indica que el usuario peter_wp:
+
+Pertenece al grupo <strong>sudo</strong> o:
+
+- Tiene permisos configurados en el archivo /etc/sudoers para ejecutar comandos como <strong>root</strong> sin restricciones.
+
+- Esto se confirma al observar que el prompt cambia a <strong>root@</strong>, lo que demuestra que se ha obtenido control total del sistema.
+
+### Paso 6: Obtención de persistencia mediante clave pública SSH
+
+Tras haber conseguido acceso al sistema con privilegios de superusuario (root), el atacante puede implementar mecanismos de persistencia, con el objetivo de mantener el acceso al sistema incluso aunque se cambien contraseñas o se reinicie el servicio.
+
+Una de las técnicas más comunes y efectivas consiste en añadir una clave pública SSH al sistema comprometido.
+
+Obtención y uso de la clave pública SSH
+
+<strong>Desde la máquina atacante</strong>, se dispone de un par de claves SSH previamente generado. En caso de no existir, puede generarse mediante:
+
+```bash
+ssh-keygen
+```
+
+<img width="622" height="417" alt="Captura de pantalla de 2025-12-25 21-19-04" src="https://github.com/user-attachments/assets/8d521d89-4912-4862-bdd9-f53dc097e189" />
+
+Una vez obtenida la clave pública <strong>id_rsa.pub</strong>, y dado que ya se tienen privilegios de administrador en la máquina víctima, se añade dicha clave al archivo de claves autorizadas del usuario root.
+
+En la máquina víctima, se ejecutan los siguientes comandos:
+
+```bash
+mkdir -p /root/.ssh
+nano /root/.ssh/authorized_keys
+```
+
+Dentro del archivo authorized_keys, se introduce la clave pública SSH del atacante.
+
+Posteriormente, se ajustan los permisos correctos para evitar problemas de acceso:
+
+```bash
+chmod 700 /root/.ssh
+chmod 600 /root/.ssh/authorized_keys
+```
+
+
+
