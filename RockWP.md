@@ -1,4 +1,4 @@
-# Solición al laboratorio RockWP
+# Solución al laboratorio RockWP
 
 |                   | Detalle maquina original                        |
 | ----------------- | ----------------------------------------------- |
