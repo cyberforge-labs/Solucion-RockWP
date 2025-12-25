@@ -240,9 +240,102 @@ chmod 600 /root/.ssh/authorized_keys
 Una vez configurada la clave pública, el atacante puede acceder directamente al sistema como root mediante SSH, sin necesidad de introducir contraseña:
 
 ```bash
-ssh peter_wp@192.168.1.10 -p 2220
+ssh -i .ssh/id_ed25519 peter_wp@192.168.1.10 -p 2220
+
 ```
 
-El acceso exitoso confirma que se ha establecido un mecanismo de persistencia permanente, independiente de las credenciales del usuario original.
+El acceso exitoso sin solicitud de contraseña confirma que la autenticación por clave SSH ha sido configurada correctamente para el usuario peter_wp, estableciendo así un mecanismo adicional de persistencia.
 
+Impacto de seguridad
 
+Esta configuración permite a un atacante:
+
+Acceder al sistema sin conocer la contraseña del usuario.
+
+Mantener acceso persistente incluso si se cambia la contraseña.
+
+Dificultar la detección del compromiso si no se auditan los archivos authorized_keys.
+
+Este paso refuerza la gravedad del compromiso, ya que el atacante puede utilizar mecanismos legítimos del sistema para mantener el acceso de forma permanente.
+
+### Paso 8: Acceso no autorizado al servicio MySQL sin contraseña
+
+Tras haber obtenido acceso al sistema y comprobar diferentes servicios instalados, se procede a verificar la seguridad del servidor de bases de datos MySQL, ya que este tipo de servicios suelen contener información sensible.
+
+Durante la comprobación, se detecta que el servicio MySQL permite el acceso sin solicitar contraseña, lo que indica una configuración gravemente insegura.
+
+## Acceso al servicio MySQL
+
+Desde la máquina comprometida, se intenta acceder al servicio MySQL utilizando el cliente estándar, sin proporcionar contraseña:
+
+```bash
+mysql -u root
+```
+
+El acceso se realiza con éxito, obteniendo una consola interactiva de MySQL con privilegios de administrador de base de datos (root), sin que se solicite ningún tipo de autenticación.
+
+Esto confirma que el usuario root de MySQL:
+
+No tiene contraseña configurada,
+
+Está configurado para permitir acceso local sin autenticación.
+
+## Resultados del acceso
+
+Una vez dentro del servicio MySQL, el atacante puede:
+
+Listar todas las bases de datos del sistema.
+
+Acceder a tablas que contienen información sensible.
+
+Modificar, borrar o crear datos.
+
+Crear nuevos usuarios con privilegios elevados.
+
+Este acceso supone el compromiso total de la capa de datos del sistema.
+
+Conclusiones finales del laboratorio
+
+En este laboratorio se ha llevado a cabo el análisis y explotación de una máquina vulnerable, demostrando cómo una serie de malas prácticas de seguridad pueden encadenarse hasta provocar el compromiso total del sistema.
+
+A lo largo del laboratorio se ha seguido una metodología estructurada, comenzando por la fase de reconocimiento y finalizando con la obtención de persistencia y el acceso a servicios críticos sin autenticación.
+
+Resumen de la cadena de ataque
+
+Reconocimiento y escaneo de puertos, identificando servicios expuestos (Apache, WordPress y SSH).
+
+Enumeración de WordPress, obteniendo usuarios válidos.
+
+Ataque de fuerza bruta contra el usuario peter_wp utilizando Hydra y un diccionario invertido.
+
+Acceso al sistema mediante SSH reutilizando las credenciales obtenidas.
+
+Escalada de privilegios directa a root debido a una configuración insegura de sudo.
+
+Obtención de persistencia mediante la instalación de claves públicas SSH.
+
+Acceso persistente sin contraseña al sistema mediante autenticación por clave.
+
+Acceso al servicio MySQL sin contraseña, comprometiendo completamente la base de datos.
+
+### Fin del laboratorio, Esperamos que hayas disfrutado y aprendido;)
+
+Esta secuencia demuestra cómo una vulnerabilidad inicial en una aplicación web puede derivar rápidamente en un compromiso completo de la infraestructura cuando no se aplican medidas básicas de seguridad.
+
+### Vulnerabilidades principales detectadas
+
+Contraseñas débiles y reutilizadas.
+
+Ausencia de protección frente a ataques de fuerza bruta.
+
+Configuración insegura del servicio SSH.
+
+Permisos incorrectos en la configuración de sudo.
+
+Falta de control de accesos mediante claves SSH.
+
+Servicio MySQL accesible sin autenticación.
+
+Falta de políticas de hardening y auditoría.
+
+# Laboratorio: https://cyberforge-labs.byethost7.com/ | https://cyberforge-labs.a0001.net 
