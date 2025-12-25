@@ -145,3 +145,39 @@ La inexistencia de mecanismos de protección como CAPTCHA o bloqueo por IP.
 
 El uso de una contraseña débil basada en un diccionario común, incluso aunque esté invertida.
 
+### Paso 4: Acceso al servicio SSH mediante reutilización de credenciales
+
+Tras obtener credenciales válidas del usuario peter_wp en el panel de administración de WordPress, se procede a comprobar si dichas credenciales han sido reutilizadas en otros servicios del sistema. Este tipo de práctica insegura es habitual y supone un riesgo significativo para la seguridad.
+
+Durante la fase de reconocimiento inicial, se identificó la existencia de un servicio SSH accesible en el puerto 2220, por lo que se intenta el acceso remoto utilizando el mismo usuario y contraseña obtenidos previamente.
+
+### Acceso al servicio SSH
+
+El acceso se realiza mediante el cliente SSH estándar, indicando el puerto no estándar configurado en el servicio:
+
+```bash
+ssh peter_wp@192.168.1.10 -p 2220
+```
+
+Al introducir la contraseña obtenida durante el ataque de fuerza bruta contra WordPress, el sistema permite el acceso correctamente, proporcionando una shell interactiva en el sistema operativo de la máquina objetivo.
+
+Resultados del acceso
+
+El acceso exitoso al servicio SSH confirma que:
+
+Las credenciales han sido reutilizadas entre diferentes servicios (WordPress y SSH).
+
+No existe una separación adecuada de credenciales entre la aplicación web y el sistema operativo.
+
+El servicio SSH no implementa medidas adicionales de seguridad, como autenticación basada en claves o restricciones por IP.
+
+### Impacto de la vulnerabilidad
+
+La reutilización de contraseñas permite a un atacante:
+
+Obtener acceso directo al sistema operativo sin necesidad de explotar vulnerabilidades adicionales.
+
+Ejecutar comandos con los privilegios del usuario comprometido.
+
+Facilitar ataques posteriores, como la escalada de privilegios hasta obtener control total del sistema.
+
