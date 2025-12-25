@@ -48,6 +48,7 @@ Para ello, se emplea la herramienta WPScan, especializada en el análisis de seg
 Identificación de la versión y componentes
 
 Se ejecuta el siguiente comando contra el sitio web:
+
 wpscan --url http://192.168.1.10 --enumerate u,vt,vp
 
 <img width="936" height="191" alt="Captura de pantalla de 2025-12-25 16-49-51" src="https://github.com/user-attachments/assets/7ab5c3ec-3738-4977-b6f7-09df60a92506" />
