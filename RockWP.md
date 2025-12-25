@@ -15,3 +15,5 @@
 
 <img width="624" height="366" alt="reconocimientoRockWP" src="https://github.com/user-attachments/assets/b8d21fcf-9869-4f9b-981f-f4916d39018e" />
 
+Con esto vemos los puertos abiertos, y que esta corriendo en cada puerto: Obtenemos que, Hay un servidor web APACHE en el puerto 80 y 443, y un servidor SSH en el puerto 2220.
+
