@@ -338,4 +338,7 @@ Servicio MySQL accesible sin autenticación.
 
 Falta de políticas de hardening y auditoría.
 
-# Laboratorio: https://cyberforge-labs.byethost7.com/ | https://cyberforge-labs.a0001.net 
+# Laboratorio: 
+# https://cyberforge-labs.byethost7.com/  
+# https://cyberforge-labs.a0001.net 
+# https://cyberforge-labs.sytes.net
