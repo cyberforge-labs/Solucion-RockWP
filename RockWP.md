@@ -38,3 +38,13 @@ Puerto 2220/TCP: Servicio SSH, configurado en un puerto no estándar.
 A continuación, se accede al servicio web a través del navegador utilizando la dirección IP de la máquina objetivo. Al analizar el contenido del sitio web, se observa que la aplicación utilizada es un WordPress, lo cual se identifica por la estructura del sitio, los recursos cargados y las rutas típicas del CMS.
 
 La detección de WordPress resulta especialmente relevante desde el punto de vista de la seguridad, ya que se trata de una plataforma ampliamente utilizada y, si no está correctamente configurada o actualizada, puede presentar vulnerabilidades conocidas explotables.
+
+### Paso 2: Enumeración de WordPress
+
+Tras identificar que el servicio web corresponde a un WordPress, se procede a realizar una fase de enumeración, cuyo objetivo es obtener información detallada sobre la instalación del CMS, como usuarios, temas, plugins y posibles vectores de ataque.
+
+Para ello, se emplea la herramienta WPScan, especializada en el análisis de seguridad de sitios WordPress.
+
+Identificación de la versión y componentes
+
+Se ejecuta el siguiente comando contra el sitio web:
