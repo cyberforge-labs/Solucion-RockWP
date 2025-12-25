@@ -11,8 +11,7 @@
 
 ### Paso 1: Reconocimiento - Escaneo de Puertos
 
-```bash
-┌──(kali㉿kali)-[~]
-└─$ nmap -p- -sV 192.168.1.10
+ nmap -p- -sV 192.168.1.10
 
 <img width="624" height="366" alt="reconocimientoRockWP" src="https://github.com/user-attachments/assets/b8d21fcf-9869-4f9b-981f-f4916d39018e" />
+
