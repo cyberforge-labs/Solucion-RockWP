@@ -103,3 +103,26 @@ El comando utilizado es el siguiente:
 ```bash
 hydra -l peter_wp -P /tmp/rockyou-reversed.txt 192.168.1.10 http-post-form \
 "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&redirect_to=http%3A%2F%2F192.168.1.10%2F:S=302"
+```
+
+Donde:
+
+-l peter_wp: especifica el usuario objetivo.
+
+-P /tmp/rockyou-reversed.txt: indica el diccionario de contraseñas invertido utilizado en el ataque.
+
+192.168.1.10: dirección IP del servidor WordPress.
+
+http-post-form: módulo de Hydra para ataques contra formularios web.
+
+/wp-login.php: ruta del formulario de inicio de sesión.
+
+log=^USER^: campo del formulario correspondiente al nombre de usuario.
+
+pwd=^PASS^: campo del formulario correspondiente a la contraseña.
+
+wp-submit=Log In: parámetro enviado al pulsar el botón de inicio de sesión.
+
+redirect_to=...: redirección utilizada por WordPress tras el login.
+
+S=302: indica a Hydra que una respuesta HTTP 302 (redirección) se considera un inicio de sesión exitoso.
